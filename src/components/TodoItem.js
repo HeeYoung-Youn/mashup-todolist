@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import { MdDone, MdDelete } from "react-icons/md";
 import { useTodoDispatch } from "../TodoContext";
 
-const CheckCircle = styled.div`
+const CheckCircle = React.memo(styled.div`
   width: 32px;
   height: 32px;
   border-radius: 16px;
@@ -20,8 +20,8 @@ const CheckCircle = styled.div`
       border: 1px solid #38d9a9;
       color: #38d9a9;
     `}
-`;
-const Text = styled.div`
+`);
+const Text = React.memo(styled.div`
   flex: 1;
   font-size: 21px;
   color: #495057;
@@ -30,7 +30,7 @@ const Text = styled.div`
     css`
       color: #ced4da;
     `}
-`;
+`);
 const Remove = styled.div`
   opacity: 0;
   display: flex;
@@ -43,7 +43,7 @@ const Remove = styled.div`
     color: #ff6b6b;
   }
 `;
-const TodoItemBlock = styled.div`
+const TodoItemBlock = React.memo(styled.div`
   display: flex;
   align-items: center;
   padding-top: 12px;
@@ -53,7 +53,7 @@ const TodoItemBlock = styled.div`
       opacity: 1;
     }
   }
-`;
+`);
 
 const TodoItem = ({ id, done, text }) => {
   const dispatch = useTodoDispatch();
@@ -73,4 +73,4 @@ const TodoItem = ({ id, done, text }) => {
   );
 };
 
-export default TodoItem;
+export default React.memo(TodoItem);

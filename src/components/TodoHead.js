@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useTodoState } from "../TodoContext";
 
-const TodoHeadBlock = styled.div`
+const TodoHeadBlock = React.memo(styled.div`
   padding-top: 48px;
   padding-left: 32px;
   padding-right: 32px;
@@ -25,7 +25,7 @@ const TodoHeadBlock = styled.div`
     margin-top: 40px;
     font-weight: bold;
   }
-`;
+`);
 
 const TodoHead = () => {
   const todos = useTodoState();
@@ -48,4 +48,4 @@ const TodoHead = () => {
   );
 };
 
-export default TodoHead;
+export default React.memo(TodoHead);

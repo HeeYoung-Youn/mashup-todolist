@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import { MdAdd } from "react-icons/md";
 import { useTodoDispatch, useTodoNextId } from "../TodoContext";
 
-const CircleButton = styled.button`
+const CircleButton = React.memo(styled.button`
   background: #38d9a9;
   &:hover {
     background: #63e6be;
@@ -45,25 +45,25 @@ const CircleButton = styled.button`
       }
       transform: translate(-50%, 50%) rotate(45deg);
     `}
-`;
+`);
 
-const InsertFormPositioner = styled.div`
+const InsertFormPositioner = React.memo(styled.div`
   width: 100%;
   bottom: 0;
   left: 0;
   position: absolute;
-`;
+`);
 
-const InsertForm = styled.form`
+const InsertForm = React.memo(styled.form`
   background: #f8f9fa;
   padding: 32px;
   padding-bottom: 72px;
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   border-top: 1px solid #e9ecef;
-`;
+`);
 
-const Input = styled.input`
+const Input = React.memo(styled.input`
   padding: 12px;
   border-radius: 4px;
   border: 1px solid #dee2e6;
@@ -71,7 +71,7 @@ const Input = styled.input`
   outline: none;
   font-size: 18px;
   box-sizing: border-box;
-`;
+`);
 
 const TodoCreate = () => {
   const [open, setOpen] = useState(false);
@@ -118,4 +118,4 @@ const TodoCreate = () => {
   );
 };
 
-export default TodoCreate;
+export default React.memo(TodoCreate);

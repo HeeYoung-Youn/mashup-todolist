@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { useTodoState } from "../TodoContext";
 import TodoItem from "./TodoItem";
 
-const TodoListBlock = styled.div`
+const TodoListBlock = React.memo(styled.div`
   flex: 1;
   padding: 20px 32px;
   padding-bottom: 48px;
   overflow-y: auto;
-`;
+`);
 
 const TodoList = () => {
   const todos = useTodoState();
@@ -27,4 +27,4 @@ const TodoList = () => {
   );
 };
 
-export default TodoList;
+export default React.memo(TodoList);
