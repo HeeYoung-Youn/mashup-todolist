@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styled, { css } from "styled-components";
 import { MdAdd } from "react-icons/md";
 import { useTodoDispatch, useTodoNextId } from "../TodoContext";
@@ -80,22 +80,25 @@ const TodoCreate = () => {
   const dispatch = useTodoDispatch();
   const nextId = useTodoNextId();
 
-  const onToggle = () => setOpen(!open);
-  const onChange = (e) => setValue(e.target.value);
-  const onSubmit = (e) => {
-    e.preventDefault();
-    dispatch({
-      type: "CREATE",
-      todo: {
-        id: nextId.current,
-        text: value,
-        done: false,
-      },
-    });
-    setValue("");
-    setOpen(false);
-    nextId.current += 1;
-  };
+  const onToggle = useCallback(() => setOpen(!open), [open]);
+  const onChange = useCallback((e) => setValue(e.target.value), []);
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch({
+        type: "CREATE",
+        todo: {
+          id: nextId.current,
+          text: value,
+          done: false,
+        },
+      });
+      setValue("");
+      setOpen(false);
+      nextId.current += 1;
+    },
+    [dispatch, nextId, value]
+  );
 
   return (
     <>
